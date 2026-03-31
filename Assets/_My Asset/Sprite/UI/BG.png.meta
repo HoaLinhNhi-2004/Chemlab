@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chapper card_0
+      name: BG
       rect:
         serializedVersion: 2
         x: 93
@@ -118,7 +118,7 @@ TextureImporter:
         width: 1350
         height: 367
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 52, y: 45, z: 56, w: 53}
       outline: []
       physicsShape: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Chapper card_0: -12037580
+      BG: -12037580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
