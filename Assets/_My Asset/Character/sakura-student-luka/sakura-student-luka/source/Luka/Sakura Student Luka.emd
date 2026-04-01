@@ -1,0 +1,8 @@
+[Info]
+Version = 3
+
+[Effect]
+Obj = none
+Obj[0] = S\Head\Object.fx
+Obj[1] = S\Body\Object.fx
+
