@@ -961,6 +961,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Lab_Chuong2
       objectReference: {fileID: 0}
+    - target: {fileID: 3595826083274540810, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ch\u01B0\u01A1ng 2"
+      objectReference: {fileID: 0}
     - target: {fileID: 7233034788850858388, guid: 075e6276b72844f4da8d2da3ba6b3486,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1060,6 +1065,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ph\u1EA3n \u1EE9ng h\xF3a h\u1ECDc"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1466,6 +1476,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Lab_Chuong3
       objectReference: {fileID: 0}
+    - target: {fileID: 3595826083274540810, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ch\u01B0\u01A1ng 3"
+      objectReference: {fileID: 0}
     - target: {fileID: 7233034788850858388, guid: 075e6276b72844f4da8d2da3ba6b3486,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1565,6 +1580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ki\u1EC3m tra ki\u1EBFn th\u1EE9c"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
