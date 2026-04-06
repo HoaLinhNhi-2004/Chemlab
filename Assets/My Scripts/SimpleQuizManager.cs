@@ -19,10 +19,14 @@ public class SimpleQuizManager : MonoBehaviour
     public TMP_Text txtBtn2;
     public TMP_Text txtBtn3;
     public TMP_Text txtFeedback;
-    public TMP_Text txtTimer; // MỚI: Ô chứa Đồng hồ
+    public TMP_Text txtTimer; // Ô chứa Đồng hồ
+
+    [Header("NPC Animation")]
+    public Animator npcAnimator;       // Kéo thả NPC vào đây
+    public string clapTriggerName = "Clap"; // Tên Trigger vỗ tay trong Animator
 
     [Header("Cài đặt thời gian")]
-    public float timePerQuestion = 15f; // MỚI: Mặc định 15 giây cho mỗi câu
+    public float timePerQuestion = 15f; // Mặc định 15 giây cho mỗi câu
 
     [Header("Danh sách câu hỏi")]
     public List<QuizQuestion> questions;
@@ -39,7 +43,7 @@ public class SimpleQuizManager : MonoBehaviour
         DisplayQuestion();
     }
 
-    void Update() // MỚI: Hàm này chạy liên tục để đếm lùi thời gian
+    void Update() // Hàm này chạy liên tục để đếm lùi thời gian
     {
         if (isTimerRunning && !isWaiting)
         {
@@ -98,6 +102,12 @@ public class SimpleQuizManager : MonoBehaviour
         {
             txtFeedback.text = "Chính xác!";
             txtFeedback.color = Color.green;
+
+            // Gọi NPC vỗ tay khi trả lời đúng
+            if (npcAnimator != null)
+            {
+                npcAnimator.SetTrigger(clapTriggerName);
+            }
         }
         else
         {
@@ -108,7 +118,7 @@ public class SimpleQuizManager : MonoBehaviour
         StartCoroutine(WaitAndNext());
     }
 
-    void TimeUp() // MỚI: Xử lý khi hết thời gian
+    void TimeUp() // Xử lý khi hết thời gian
     {
         isTimerRunning = false;
         txtTimer.text = "Hết giờ!";
