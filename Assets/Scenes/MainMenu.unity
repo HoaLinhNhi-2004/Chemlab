@@ -1598,6 +1598,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Lab_Chuong2
       objectReference: {fileID: 0}
+    - target: {fileID: 3595826083274540810, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ch\u01B0\u01A1ng 2"
+      objectReference: {fileID: 0}
     - target: {fileID: 7233034788850858388, guid: 075e6276b72844f4da8d2da3ba6b3486,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1696,6 +1701,27 @@ PrefabInstance:
     - target: {fileID: 7233034788850858388, guid: 075e6276b72844f4da8d2da3ba6b3486,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "M\u1ED9t s\u1ED1 h\u1EE3p ch\u1EA5t th\xF4ng d\u1EE5ng"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91,
+        type: 2}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -48342,6 +48368,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ph\u1EA3n \u1EE9ng h\xF3a h\u1ECDc"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91,
+        type: 2}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64012,17 +64059,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025896161}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.69}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00015839934}
+  m_LocalPosition: {x: 0, y: 0, z: -0.403}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1952054057}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -179.982, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 7.27}
+  m_AnchoredPosition: {x: 0.456, y: 0.68}
   m_SizeDelta: {x: 698.80005, y: 414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1028393265
@@ -92914,6 +92961,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Lab_Chuong3
       objectReference: {fileID: 0}
+    - target: {fileID: 3595826083274540810, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Ch\u01B0\u01A1ng 3"
+      objectReference: {fileID: 0}
     - target: {fileID: 7233034788850858388, guid: 075e6276b72844f4da8d2da3ba6b3486,
         type: 3}
       propertyPath: m_Pivot.x
@@ -93012,6 +93064,27 @@ PrefabInstance:
     - target: {fileID: 7233034788850858388, guid: 075e6276b72844f4da8d2da3ba6b3486,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_text
+      value: "Tr\u1EAFc nghi\u1EC7m ki\u1EBFn th\u1EE9c\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91,
+        type: 2}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 8679071351618128685, guid: 075e6276b72844f4da8d2da3ba6b3486,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
