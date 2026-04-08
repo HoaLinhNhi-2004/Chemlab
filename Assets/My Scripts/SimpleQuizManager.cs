@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class QuizQuestion
@@ -20,6 +21,7 @@ public class SimpleQuizManager : MonoBehaviour
     public TMP_Text txtBtn3;
     public TMP_Text txtFeedback;
     public TMP_Text txtTimer; // Ô chứa Đồng hồ
+    public Image imgTimerFill360; // Image dạng Filled (Radial 360)
 
     [Header("NPC Animation")]
     public Animator npcAnimator;       // Kéo thả NPC vào đây
@@ -48,9 +50,7 @@ public class SimpleQuizManager : MonoBehaviour
         if (isTimerRunning && !isWaiting)
         {
             currentTime -= Time.deltaTime; // Trừ dần thời gian thực
-
-            // Hiển thị ra màn hình chữ Txt_Timer
-            txtTimer.text = "Thời gian: " + Mathf.CeilToInt(currentTime).ToString() + "s";
+            UpdateTimerUI();
 
             // Nếu hết giờ
             if (currentTime <= 0)
@@ -74,6 +74,7 @@ public class SimpleQuizManager : MonoBehaviour
             // Reset và chạy lại đồng hồ
             currentTime = timePerQuestion;
             isTimerRunning = true;
+            UpdateTimerUI(); // Bắt đầu câu mới: fill = 1
         }
         else
         {
@@ -83,6 +84,7 @@ public class SimpleQuizManager : MonoBehaviour
             txtBtn3.transform.parent.gameObject.SetActive(false);
             txtFeedback.text = "";
             txtTimer.text = ""; // Giấu đồng hồ đi khi xong bài
+            if (imgTimerFill360 != null) imgTimerFill360.fillAmount = 0f;
             isTimerRunning = false;
         }
     }
@@ -123,11 +125,30 @@ public class SimpleQuizManager : MonoBehaviour
         isTimerRunning = false;
         txtTimer.text = "Hết giờ!";
         txtTimer.color = Color.red; // Đổi màu chữ đồng hồ thành đỏ
+        if (imgTimerFill360 != null) imgTimerFill360.fillAmount = 0f;
         
         txtFeedback.text = "Quá thời gian!";
         txtFeedback.color = Color.red;
         
         StartCoroutine(WaitAndNext());
+    }
+
+    void UpdateTimerUI()
+    {
+        float safeTimePerQuestion = Mathf.Max(0.0001f, timePerQuestion);
+        float normalizedTime = Mathf.Clamp01(currentTime / safeTimePerQuestion);
+
+        // Hiển thị chữ đồng hồ
+        if (txtTimer != null)
+        {
+            txtTimer.text = Mathf.CeilToInt(Mathf.Max(0f, currentTime)).ToString();
+        }
+
+        // Fill chạy từ 1 -> 0 theo thời gian
+        if (imgTimerFill360 != null)
+        {
+            imgTimerFill360.fillAmount = normalizedTime;
+        }
     }
 
     IEnumerator WaitAndNext()
