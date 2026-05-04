@@ -20,42 +20,50 @@ public class SimpleQuizManager : MonoBehaviour
     public TMP_Text txtBtn2;
     public TMP_Text txtBtn3;
     public TMP_Text txtFeedback;
-    public TMP_Text txtTimer; // Ô chứa Đồng hồ
-    public Image imgTimerFill360; // Image dạng Filled (Radial 360)
+    public TMP_Text txtTimer;
+    public Image imgTimerFill360;
+
+    [Header("UI Kết quả")]
+    public GameObject resultPanel;
+    public TMP_Text txtFinalScore;
+    public TMP_Text txtRating;
 
     [Header("NPC Animation")]
-    public Animator npcAnimator;       // Kéo thả NPC vào đây
-    public string clapTriggerName = "Clap"; // Tên Trigger vỗ tay trong Animator
+    public Animator npcAnimator;
+    public string clapTriggerName = "Clap";
 
     [Header("Cài đặt thời gian")]
-    public float timePerQuestion = 15f; // Mặc định 15 giây cho mỗi câu
+    public float timePerQuestion = 15f;
 
     [Header("Danh sách câu hỏi")]
     public List<QuizQuestion> questions;
+
     private int currentIndex = 0;
     private bool isWaiting = false;
-
-    // Biến cho đồng hồ
-    private float currentTime; 
+    private float currentTime;
     private bool isTimerRunning = false;
+
+    // Thêm mới: biến tính điểm
+    private int score = 0;
 
     void Start()
     {
+        score = 0;
         txtFeedback.text = "";
+        if (resultPanel != null) resultPanel.SetActive(false);
         DisplayQuestion();
     }
 
-    void Update() // Hàm này chạy liên tục để đếm lùi thời gian
+    void Update()
     {
         if (isTimerRunning && !isWaiting)
         {
-            currentTime -= Time.deltaTime; // Trừ dần thời gian thực
+            currentTime -= Time.deltaTime;
             UpdateTimerUI();
 
-            // Nếu hết giờ
             if (currentTime <= 0)
             {
-                TimeUp(); 
+                TimeUp();
             }
         }
     }
@@ -71,21 +79,22 @@ public class SimpleQuizManager : MonoBehaviour
             txtBtn3.text = q.answers[2];
             txtFeedback.text = "";
 
-            // Reset và chạy lại đồng hồ
             currentTime = timePerQuestion;
             isTimerRunning = true;
-            UpdateTimerUI(); // Bắt đầu câu mới: fill = 1
+            UpdateTimerUI();
         }
         else
         {
-            txtQuestion.text = "Chúc mừng! Bạn đã hoàn thành bài kiểm tra!";
+            // Hết câu hỏi → giống code gốc, thêm ShowResult
             txtBtn1.transform.parent.gameObject.SetActive(false);
             txtBtn2.transform.parent.gameObject.SetActive(false);
             txtBtn3.transform.parent.gameObject.SetActive(false);
             txtFeedback.text = "";
-            txtTimer.text = ""; // Giấu đồng hồ đi khi xong bài
+            txtTimer.text = "";
             if (imgTimerFill360 != null) imgTimerFill360.fillAmount = 0f;
             isTimerRunning = false;
+
+            ShowResult();
         }
     }
 
@@ -97,19 +106,17 @@ public class SimpleQuizManager : MonoBehaviour
     {
         if (isWaiting || currentIndex >= questions.Count) return;
 
-        isTimerRunning = false; // Dừng đồng hồ ngay khi người chơi bấm nút
+        isTimerRunning = false;
 
         QuizQuestion q = questions[currentIndex];
         if (buttonIndex == q.correctAnswerIndex)
         {
+            score++; // Thêm mới: cộng điểm
             txtFeedback.text = "Chính xác!";
             txtFeedback.color = Color.green;
 
-            // Gọi NPC vỗ tay khi trả lời đúng
             if (npcAnimator != null)
-            {
                 npcAnimator.SetTrigger(clapTriggerName);
-            }
         }
         else
         {
@@ -120,16 +127,16 @@ public class SimpleQuizManager : MonoBehaviour
         StartCoroutine(WaitAndNext());
     }
 
-    void TimeUp() // Xử lý khi hết thời gian
+    void TimeUp()
     {
         isTimerRunning = false;
         txtTimer.text = "Hết giờ!";
-        txtTimer.color = Color.red; // Đổi màu chữ đồng hồ thành đỏ
+        txtTimer.color = Color.red;
         if (imgTimerFill360 != null) imgTimerFill360.fillAmount = 0f;
-        
+
         txtFeedback.text = "Quá thời gian!";
         txtFeedback.color = Color.red;
-        
+
         StartCoroutine(WaitAndNext());
     }
 
@@ -138,24 +145,58 @@ public class SimpleQuizManager : MonoBehaviour
         float safeTimePerQuestion = Mathf.Max(0.0001f, timePerQuestion);
         float normalizedTime = Mathf.Clamp01(currentTime / safeTimePerQuestion);
 
-        // Hiển thị chữ đồng hồ
         if (txtTimer != null)
-        {
             txtTimer.text = Mathf.CeilToInt(Mathf.Max(0f, currentTime)).ToString();
-        }
 
-        // Fill chạy từ 1 -> 0 theo thời gian
         if (imgTimerFill360 != null)
-        {
             imgTimerFill360.fillAmount = normalizedTime;
+    }
+
+    // Thêm mới: hiện kết quả
+    void ShowResult()
+    {
+        if (resultPanel != null)
+        {
+            resultPanel.SetActive(true);
+
+            if (txtFinalScore != null)
+                txtFinalScore.text = score + "/" + questions.Count + " câu đúng";
+
+            if (txtRating != null)
+            {
+                float ratio = (float)score / questions.Count;
+                if (ratio == 1f)
+                    txtRating.text = "Xuất sắc! Bạn trả lời đúng tất cả!";
+                else if (ratio >= 0.6f)
+                    txtRating.text = "Tốt! Hãy ôn lại các câu sai nhé.";
+                else
+                    txtRating.text = "Cần cố gắng thêm! Ôn lại lý thuyết nhé.";
+            }
         }
+    }
+
+    // Thêm mới: làm lại bài
+    public void ReplayQuiz()
+    {
+        score = 0;
+        currentIndex = 0;
+
+        txtBtn1.transform.parent.gameObject.SetActive(true);
+        txtBtn2.transform.parent.gameObject.SetActive(true);
+        txtBtn3.transform.parent.gameObject.SetActive(true);
+        txtTimer.color = Color.white;
+        txtFeedback.color = Color.white;
+
+        if (resultPanel != null) resultPanel.SetActive(false);
+
+        DisplayQuestion();
     }
 
     IEnumerator WaitAndNext()
     {
         isWaiting = true;
         yield return new WaitForSeconds(2f);
-        txtTimer.color = Color.white; // Trả lại màu trắng cho đồng hồ ở câu mới
+        txtTimer.color = Color.white;
         currentIndex++;
         DisplayQuestion();
         isWaiting = false;

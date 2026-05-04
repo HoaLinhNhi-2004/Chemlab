@@ -1,35 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[System.Serializable]
-public class TheoryPage
-{
-    public string title;
-    [TextArea(5, 10)] 
-    public string content;
-}
-
 public class TheoryManager : MonoBehaviour
 {
-    public TMP_Text txtTitle;
-    public TMP_Text txtContent;
-    public List<TheoryPage> pages;
+    [Header("UI")]
+    public TextMeshProUGUI txtContent;
+    public TextMeshProUGUI txtTitle; // nếu có
+
+    [Header("Nội dung lý thuyết")]
+    [TextArea(3, 6)]
+    public string[] contents; // điền nội dung từng trang trong Inspector
 
     private int currentIndex = 0;
 
     void Start()
     {
-        UpdateUI();
+        ShowContent(0);
     }
 
     public void NextPage()
     {
-        if (currentIndex < pages.Count - 1)
+        if (currentIndex < contents.Length - 1)
         {
             currentIndex++;
-            UpdateUI();
+            ShowContent(currentIndex);
+        }
+        else
+        {
+            // Hết nội dung → làm gì đó (thoát, mở quiz,...)
+            Debug.Log("Đã hết nội dung");
         }
     }
 
@@ -38,16 +37,12 @@ public class TheoryManager : MonoBehaviour
         if (currentIndex > 0)
         {
             currentIndex--;
-            UpdateUI();
+            ShowContent(currentIndex);
         }
     }
 
-    void UpdateUI()
+    void ShowContent(int index)
     {
-        if (pages.Count > 0)
-        {
-            txtTitle.text = pages[currentIndex].title;
-            txtContent.text = pages[currentIndex].content;
-        }
+        txtContent.text = contents[index];
     }
 }
