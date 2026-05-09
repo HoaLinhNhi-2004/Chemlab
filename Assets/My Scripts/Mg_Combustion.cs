@@ -5,6 +5,9 @@ public class Mg_Combustion : MonoBehaviour
     [Header("Tên viên Magie rớt vào")]
     public string targetName = "Drop_Mg";
 
+    [Header("GameObject sẽ được bật khi va chạm")]
+    public GameObject objectToActivate;
+
     [Header("Hiệu ứng ánh sáng (Kéo Point Light vào đây)")]
     public Light flashLight; 
 
@@ -32,6 +35,11 @@ public class Mg_Combustion : MonoBehaviour
         {
             isBurning = true;
             Destroy(other.gameObject); 
+
+            if (objectToActivate != null)
+            {
+                objectToActivate.SetActive(true);
+            }
 
             if (flashLight != null) flashLight.intensity = maxIntensity;
             
